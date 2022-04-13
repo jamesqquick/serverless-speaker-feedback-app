@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+model Talk {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  description String   @db.VarChar(10000)
+  slidesLink  String   @db.VarChar(255)
+  conference  String   @db.VarChar(255)
+  slug        String   @unique @db.VarChar(255)
+  reviews     Review[]
+}
+
+model Review {
+  id     Int    @id @default(autoincrement())
+  rating Int
+  text   String @db.VarChar(1000)
+  talk   Talk   @relation(fields: [talkId], references: [id])
+  talkId Int
+}
