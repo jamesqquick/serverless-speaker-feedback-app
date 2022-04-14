@@ -5,7 +5,7 @@ type StarRatingProps = {
 }
 
 export default function StarRating({ ratingChanged }: StarRatingProps) {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(2);
   const stars = [1, 2, 3, 4, 5];
 
   const handleMouseEnter = (index:number) => {
