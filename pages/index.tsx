@@ -45,7 +45,7 @@ const Home: NextPage<HomePageProps> = ( { talks }) => {
 export async function getStaticProps(context:GetStaticPropsContext) {
   const talks = await prisma.talk.findMany();
   return {
-    props: {talks},
+    props: {talks: talks?.reverse()},
     revalidate: 60,
 
   }
