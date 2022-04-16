@@ -16,8 +16,6 @@ export default async function handler(
       const talks = await prisma.talk.findMany();
       res.status(200).json({ data: talks })
     } else if (req.method === 'POST') {
-      console.log("post")
-      //only authenticated users
       const session = getSession(req, res);
       console.log(session)
       if (!session?.user) {

@@ -46,6 +46,8 @@ export async function getStaticProps(context:GetStaticPropsContext) {
   const talks = await prisma.talk.findMany();
   return {
     props: {talks},
+    revalidate: 60,
+
   }
 }
 

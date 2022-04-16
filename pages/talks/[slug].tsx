@@ -49,7 +49,9 @@ const Home: NextPage<TalkPageProps> = ({talk}) => {
 }
 
 export const getStaticProps = async ({params}: GetStaticPropsContext) => {
-  if(!params || typeof params.slug !== "string") throw new Error("Soemthing bad");
+  if(!params || typeof params.slug !== "string") {
+    throw new Error("Soemthing bad");
+  }
   const slug = params.slug || '';
   const talk = await prisma.talk.findUnique({
     where: {
