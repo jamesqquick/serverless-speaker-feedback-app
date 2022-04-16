@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../lib/prisma'
+import { twilioClient } from '../../lib/twilio';
 interface RetVal {
   data?: any
   err?: string
@@ -36,6 +37,13 @@ export default async function handler(
         data: review
       })
       //TODO: notification somewhere
+      if (process.env.TEXT_ALERTS_ON === 'TRUE') {
+        await twilioClient.messages.create({
+          body: `New Feedback : "${rating} - ${text}"`,
+          from: process.env.TWILIO_FROM_NUMBER,
+          to: process.env.TWILIO_TO_NUMBER,
+        });
+      }
       res.status(200).json({ data: createdReview })
     }
   } catch (err) {
