@@ -20,12 +20,16 @@ model Talk {
   conference  String   @db.VarChar(255)
   slug        String   @unique @db.VarChar(255)
   reviews     Review[]
+  createdAt   DateTime @default(now())
+  date        DateTime
 }
 
 model Review {
-  id     Int    @id @default(autoincrement())
-  rating Int
-  text   String @db.VarChar(1000)
-  talk   Talk   @relation(fields: [talkId], references: [id])
-  talkId Int
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  text      String   @db.VarChar(1000)
+  talk      Talk     @relation(fields: [talkId], references: [id])
+  talkId    Int
+  createdAt DateTime @default(now())
+
 }

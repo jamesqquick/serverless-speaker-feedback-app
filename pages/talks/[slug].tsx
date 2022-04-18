@@ -7,6 +7,7 @@ import Reviews from '../../components/Reviews'
 import ReviewForm from '../../components/ReviewForm'
 import prisma from '../../lib/prisma'
 import Tweets from '../../components/Tweets'
+import moment from 'moment'
 
 type TalkPageProps = {
   talk: Talk
@@ -28,7 +29,7 @@ const Home: NextPage<TalkPageProps> = ({talk}) => {
       <p className="text-gray-200 text-xl mb-1">
         <span className="text-gray-400 text-lg">Conference:</span> {talk.conference}</p>
       <p className="text-xl text-gray-200 mb-1">
-        <span className="text-gray-400 text-lg">Date:</span> Some date
+        <span className="text-gray-400 text-lg">Date:</span>  {moment(talk.date).format("MM/DD/YYYY")}
       </p>
       <p className="text-gray-200 text-xl mb-1">
         <span className="text-gray-400 text-lg">Slides: </span> 
@@ -60,9 +61,13 @@ export const getStaticProps = async ({params}: GetStaticPropsContext) => {
   })
 
   if(!talk) throw new Error("Couln't find that talk")
-
+  const formattedTalk = {
+    ...talk,
+    date: talk.date.toString(),
+    createdAt: talk.createdAt.toString()
+  };
   return { 
-    props: { talk },
+    props: { talk: formattedTalk },
     revalidate: 60
   }
 }

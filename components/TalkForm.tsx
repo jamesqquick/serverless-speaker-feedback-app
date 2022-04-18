@@ -6,13 +6,14 @@ const TalkForm = () => {
   const [description, setDescription] = useState("");
   const [slidesLink, setSlidesLink] = useState("");
   const [conference, setConference] = useState("");
+  const [date, setDate] = useState("");
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     try {
       const res = await fetch('/api/talks', {
         method: "POST",
-        body: JSON.stringify({title, description, slidesLink, conference})
+        body: JSON.stringify({title, description, slidesLink, conference, date})
       })
       if(res.status !== 200) {
         return;
@@ -38,6 +39,10 @@ const TalkForm = () => {
       <div className="mb-4">
         <label className="text-md font-bold text-gray-300 mb-1 block" htmlFor="slidesLink">Slides Link</label>
         <input className="border-2 rounded-md text-lg px-4 py-3 w-full" onChange={(e) => setSlidesLink(e.target.value)} type="text" name="slidesLink" value={slidesLink} />
+      </div>
+      <div className="mb-4">
+        <label className="text-md font-bold text-gray-300 mb-1 block" htmlFor="date">Date</label>
+        <input className="border-2 rounded-md text-lg px-4 py-3 w-full" onChange={(e) => setDate(e.target.value)} type="date" name="date" value={date} />
       </div>
       <div className="mb-4">
         <label className="text-md font-bold text-gray-300 mb-1 block" htmlFor="description">Talk Description</label>

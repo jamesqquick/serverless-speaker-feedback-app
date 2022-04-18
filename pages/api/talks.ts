@@ -17,20 +17,19 @@ export default async function handler(
       res.status(200).json({ data: talks })
     } else if (req.method === 'POST') {
       const session = getSession(req, res);
-      console.log(session)
       if (!session?.user) {
         return res.status(401).json({ err: 'Unauthorized' });
       }
-      const { title, conference, description, slidesLink } = JSON.parse(req.body);
+      const { title, conference, description, slidesLink, date } = JSON.parse(req.body);
 
-      if (!title || !conference || !description || !slidesLink) {
+      if (!title || !conference || !description || !slidesLink || !date) {
         return res.status(400).json({ err: "All inputs are required" })
 
       }
 
       const titleAndConference = `${title}-${conference}`.replace(/[^a-zA-Z ]/g, "");
       const talk = {
-        title, conference, description, slidesLink, slug: slugify(titleAndConference)
+        title, conference, description, slidesLink, slug: slugify(titleAndConference), date: new Date(date)
       }
       const createdTalk = await prisma.talk.create({
         data: talk

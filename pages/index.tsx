@@ -43,9 +43,18 @@ const Home: NextPage<HomePageProps> = ( { talks }) => {
 }
 
 export async function getStaticProps(context:GetStaticPropsContext) {
-  const talks = await prisma.talk.findMany();
+  const talks = await prisma.talk.findMany({
+    orderBy: {
+      date: 'desc'
+    }
+  });
+  const formattedTalks = talks.map( (talk: Talk) => ({
+    ...talk,
+    date: talk.date.toString(),
+    createdAt: talk.createdAt.toString()
+  }))
   return {
-    props: {talks: talks?.reverse()},
+    props: {talks: formattedTalks},
     revalidate: 60,
 
   }
