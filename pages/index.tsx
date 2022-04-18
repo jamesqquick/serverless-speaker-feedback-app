@@ -22,7 +22,7 @@ const Home: NextPage<HomePageProps> = ( { talks }) => {
       </Head>
 
       <main>
-        <h1 className="text-6xl text-gray-200 mb-10 font-bold text-center">
+        <h1 className=" text-4xl md:text-6xl text-gray-200 mb-10 font-bold text-center">
           <span className="font-light text-gray-400">#</span>JQQ<span className="text-teal-200 ">Talks</span>
         </h1>
 
