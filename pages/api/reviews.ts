@@ -36,7 +36,6 @@ export default async function handler(
       const createdReview = await prisma.review.create({
         data: review
       })
-      //TODO: notification somewhere
       if (process.env.TEXT_ALERTS_ON === 'TRUE') {
         await twilioClient.messages.create({
           body: `New Feedback : "${rating} - ${text}"`,
