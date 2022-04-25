@@ -34,9 +34,14 @@ const Home: NextPage<HomePageProps> = ( { talks }) => {
             </Link>
           </div>
         }
-        {talks.map(talk => (
+        {talks.length > 0 && talks.map(talk => (
           <TalkCard talk={talk} key={talk.id}/>
         ))}
+        {
+          talks.length === 0 && (
+            <p className="text-xl text-white text-center my-6">I guess James hasn&apos;t done any talks yet...</p>
+          )
+        }
       </main>
     </div>
   )
