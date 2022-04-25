@@ -8,6 +8,7 @@ type CommentFormProps = {
 const ReviewForm = ({talkId}: CommentFormProps) => {
   const [rating, setRating] = useState(1);
   const [text, setText] = useState("");
+  const [name, setName] = useState("");
   
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
     try {
       const res = await fetch('/api/reviews', {
         method: "POST",
-        body: JSON.stringify({rating, text, talkId})
+        body: JSON.stringify({rating, text, talkId, name})
       })
       await res.json();
       setRating(1);
@@ -30,6 +31,10 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
           Add a Review
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col"> 
+          <div className="mb-4">
+            <label className="text-md font-bold text-gray-300 mb-1 block" htmlFor="name">Name</label>
+            <input className="border-2 rounded-md text-lg px-4 py-3 w-full" onChange={(e) => setName(e.target.value)} type="text" name="name" value={name}  />
+          </div> 
            <div className="mb-4">
               <label className="text-md font-bold text-gray-300 mb-2 block" htmlFor="description">What did you think? Tell me everything 👇</label>
               <textarea className="border-2 rounded-md text-lg px-4 py-3 w-full" onChange={(e) => setText(e.target.value)} name="text" value={text} rows={5} />
