@@ -13,6 +13,15 @@ type TalkPageProps = {
   talk: Talk
 }
 const Home: NextPage<TalkPageProps> = ({talk}) => {
+  const tweetText = `@jamesqquick @planetscaledata %23JQQTalks`;
+
+   React.useEffect(() => {
+    const s = document.createElement("script");
+    s.setAttribute("src", "https://platform.twitter.com/widgets.js");
+    s.setAttribute("async", "true");
+    document.head.appendChild(s);
+  }, []);
+
   return (
     <div >
       <Head>
@@ -22,10 +31,13 @@ const Home: NextPage<TalkPageProps> = ({talk}) => {
       </Head>
 
       <main>
-
       <h1 className="text-white text-4xl mb-12 font-bold text-center">
           {talk.title}
       </h1>
+      <div className="h-6 flex justify-center scale-150 mb-6">
+        <a href={`https://twitter.com/intent/tweet?text=${tweetText}`} rel="noopener noreferrer" target="_blank" className="twitter-mention-button" data-show-count="false">Share this talk!</a>
+      </div>
+      
       <p className="text-gray-200 text-xl mb-1">
         <span className="text-gray-400 text-lg">Conference:</span> {talk.conference}</p>
       <p className="text-xl text-gray-200 mb-1">
