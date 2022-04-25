@@ -31,7 +31,7 @@ export default async function handler(
     } else if (req.method === 'POST') {
       const { rating, text, talkId, name } = JSON.parse(req.body);
       const review = {
-        rating, text, talk: { connect: { id: talkId } }, name
+        rating, text, talk: { connect: { id: talkId } }
       }
       const createdReview = await prisma.review.create({
         data: review

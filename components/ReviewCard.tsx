@@ -17,9 +17,9 @@ export default function ReviewCard({review}: CardProps) {
           </svg>
         ))}
       </div>
-      { review.name &&
+      {/* { review.name &&
         <p className="text-gray-200 mb-2">{review.name}</p>
-      }
+      } */}
       <p className="text-gray-200">{review.text}</p>
     </div>
   )
