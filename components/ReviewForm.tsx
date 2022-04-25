@@ -32,10 +32,10 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col">
            {/*UPDATE  */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="text-md font-bold text-gray-300 mb-1 block" htmlFor="name">Name</label>
             <input className="border-2 rounded-md text-lg px-4 py-3 w-full" onChange={(e) => setName(e.target.value)} type="text" name="name" value={name}  />
-          </div> 
+          </div>  */}
            <div className="mb-4">
               <label className="text-md font-bold text-gray-300 mb-2 block" htmlFor="description">What did you think? Tell me everything 👇</label>
               <textarea className="border-2 rounded-md text-lg px-4 py-3 w-full" onChange={(e) => setText(e.target.value)} name="text" value={text} rows={5} />

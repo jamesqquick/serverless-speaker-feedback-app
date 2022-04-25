@@ -32,7 +32,7 @@ export default async function handler(
       const { rating, text, talkId, name } = JSON.parse(req.body);
       // UPDATE
       const review = {
-        rating, text, talk: { connect: { id: talkId } }, name
+        rating, text, talk: { connect: { id: talkId } }
       }
       const createdReview = await prisma.review.create({
         data: review
