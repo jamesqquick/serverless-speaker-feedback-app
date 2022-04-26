@@ -29,7 +29,7 @@ model Review {
   rating    Int
   text      String   @db.VarChar(1000)
   //UPDATE
-  // name      String?  @db.VarChar(255)
+  name      String?  @db.VarChar(255)
   talk      Talk     @relation(fields: [talkId], references: [id])
   talkId    Int
   createdAt DateTime @default(now())
