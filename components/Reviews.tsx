@@ -11,7 +11,6 @@ type ReviewsProps = {
 export default function Reviews({talkId}: ReviewsProps) {
 
   const { data, error } = useSWR(`/api/reviews?talkId=${talkId}`, fetcher)
-  console.log(data)
   return (
     <div className="mt-16">
         <h2 className="text-4xl font-bold text-white mb-10 text-center">

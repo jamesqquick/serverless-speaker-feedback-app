@@ -16,7 +16,6 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
   
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
-    console.log(rating, text);
     try {
       const res = await fetch('/api/reviews', {
         method: "POST",

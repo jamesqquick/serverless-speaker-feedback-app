@@ -19,9 +19,7 @@ const TalkForm = () => {
         return;
       }
       const { data } = await res.json();
-      console.log(data);
       Router.push(`/talks/${data.slug}`)
-      console.log(data);
     } catch (error) {
       console.error(error)
     }
