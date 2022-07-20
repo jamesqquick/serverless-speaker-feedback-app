@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import useSWR from 'swr';
+import { fetcher } from '../lib/swr';
 import StarRating from './StarRating';
 
 
@@ -6,6 +8,8 @@ type CommentFormProps = {
   talkId: number
 }
 const ReviewForm = ({talkId}: CommentFormProps) => {
+  const { mutate } = useSWR(`/api/reviews?talkId=${talkId}`, fetcher)
+
   const [rating, setRating] = useState(5);
   const [text, setText] = useState("");
   const [name, setName] = useState("");
@@ -22,6 +26,7 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
       setRating(5);
       setName('')
       setText("");
+      mutate();
     } catch (error) {
       console.error(error)
     }
