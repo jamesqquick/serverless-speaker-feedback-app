@@ -41,7 +41,7 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
               <textarea className="border-2 rounded-md text-lg px-4 py-3 w-full" onChange={(e) => setText(e.target.value)} name="text" value={text} rows={5} />
             </div> 
             <div className="mb-8">
-              <label className="text-md font-bold text-gray-300 mb-6 block" htmlFor="description">What rating would you give? (hover to select)</label>
+              <label className="text-md font-bold text-gray-300 mb-6 block" htmlFor="description">What rating would you give? (hover or click to select)</label>
               <StarRating ratingChanged={setRating}/>
             </div>
           <button className="text-lg font-bold bg-teal-200 

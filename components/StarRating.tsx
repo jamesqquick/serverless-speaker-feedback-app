@@ -16,7 +16,7 @@ export default function StarRating({ ratingChanged }: StarRatingProps) {
   return (
     <div className="flex gap-4 ml-2">
       {stars.map((_, index) => (
-          <svg key={index}
+          <svg key={index} onClick={() => handleMouseEnter(index)}
           onMouseEnter={() =>handleMouseEnter(index)}
           aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" className={`w-4   
           ${index <= rating ? 'text-teal-200' : 'text-gray-100'} mr-1 scale-[2] `} role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
