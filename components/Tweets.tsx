@@ -7,9 +7,12 @@ import TwitterCard from './TwitterCard'
 export default function Tweets() {
 
   const { data, error } = useSWR<{data:Tweet[]}>(`/api/tweets`, fetcher)
-  console.log(data);
+  if(!data || data.data.length === 0) {
+    return <></>;
+  }
   return (
     <div className="mt-16">
+        
         <h2 className="text-4xl font-bold text-white mb-10 text-center">
           Tweets
         </h2>

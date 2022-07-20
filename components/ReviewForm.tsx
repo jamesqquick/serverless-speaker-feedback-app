@@ -20,6 +20,7 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
       })
       await res.json();
       setRating(1);
+      setName('')
       setText("");
     } catch (error) {
       console.error(error)
