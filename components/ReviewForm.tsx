@@ -6,7 +6,7 @@ type CommentFormProps = {
   talkId: number
 }
 const ReviewForm = ({talkId}: CommentFormProps) => {
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(5);
   const [text, setText] = useState("");
   const [name, setName] = useState("");
   
@@ -19,7 +19,7 @@ const ReviewForm = ({talkId}: CommentFormProps) => {
         body: JSON.stringify({rating, text, talkId, name})
       })
       await res.json();
-      setRating(1);
+      setRating(5);
       setName('')
       setText("");
     } catch (error) {

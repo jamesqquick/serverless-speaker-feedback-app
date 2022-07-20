@@ -6,7 +6,7 @@ type CardProps = {
 }
 export default function ReviewCard({review}: CardProps) {
   return (
-    <div className="py-4 px-8 mb-4 shadow-md bg-gray-700 rounded-md">
+    <div className="py-4 px-8 shadow-md bg-gray-700 rounded-md">
       <div className="flex gap-4 my-6">
 
         {[1,2,3,4,5].map( (index) => (
@@ -18,10 +18,8 @@ export default function ReviewCard({review}: CardProps) {
         ))}
       </div>
       {/* UPDATE */}
-      { review.name &&
-        <p className="text-gray-200 mb-2">{review.name}</p>
-      }
-      <p className="text-gray-200">{review.text}</p>
+      <p className="text-gray-200 font-bold text-sm mb-1">{review?.name || 'anonymous'}</p>
+      <p className="text-gray-200 text-lg">{review.text}</p>
     </div>
   )
 }

@@ -11,14 +11,17 @@ type ReviewsProps = {
 export default function Reviews({talkId}: ReviewsProps) {
 
   const { data, error } = useSWR(`/api/reviews?talkId=${talkId}`, fetcher)
+  console.log(data)
   return (
     <div className="mt-16">
         <h2 className="text-4xl font-bold text-white mb-10 text-center">
           Reviews
         </h2>
-        {data?.data && data.data.map( (review:Review) => (
-          <ReviewCard review={review} key={review.id}/>
-        ))}
+        <div className="grid md:grid-cols-2 gap-2">
+            {data?.data && data.data.map( (review:Review) => (
+                <ReviewCard review={review} key={review.id}/>
+                ))}
+        </div>
     </div>
   )
 }
